@@ -1,0 +1,65 @@
+﻿<Window x:Name="window1" x:Class="WpfGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfGame"
+        mc:Ignorable="d"
+        Title="Fight the monsters!" Height="550" Width="700" Icon="Images/egg1.png" BorderBrush="#FFCBE2DC" BorderThickness="2">
+    <Window.CommandBindings >
+        <CommandBinding Command="ApplicationCommands.New" Executed="NewGame_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="Help_Executed"/>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Command="ApplicationCommands.New" Key="F2"/>
+        <KeyBinding Command="ApplicationCommands.Help" Key="F1"/>
+    </Window.InputBindings>
+    <Grid Background="#FFCBE2DC" ShowGridLines="False" Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition x:Name="canvasColumn" Width="600"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="400"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Canvas x:Name="canvas1" Margin="0" MouseDown="Canvas_MouseDown" KeyDown="canvas1_KeyDown" Focusable="True" Background="White" Grid.Column="1" Grid.Row="3"/>
+        <Label x:Name="labelLevel" Content="00" HorizontalAlignment="Left" Margin="-2,0,0,-4" Width="48" FontWeight="Bold" BorderThickness="1" TextOptions.TextFormattingMode="Display" Padding="0" RenderTransformOrigin="0.574,0.31" Grid.Row="1" VerticalAlignment="Bottom" Height="18" Grid.Column="1"/>
+        <Rectangle x:Name="rectHP_base" HorizontalAlignment="Left" Height="11" Margin="50,0,0,0" Stroke="Black" VerticalAlignment="Bottom" Width="160" Grid.Column="1" Grid.Row="1">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0.2,0">
+                    <GradientStop Color="#FF013811"/>
+                    <GradientStop Color="#FF00FF46" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Rectangle x:Name="rectHP" HorizontalAlignment="Left" Height="11" Margin="210,0,0,0" VerticalAlignment="Bottom" Width="0" Fill="White" Grid.Column="1" Grid.Row="1"/>
+
+        <Rectangle x:Name="rectHP_top" HorizontalAlignment="Left" Height="11" Margin="50,0,0,0" Stroke="Black" VerticalAlignment="Bottom" Width="160" Grid.Column="1" Grid.Row="1"/>
+
+        <Label x:Name="labelPoint" Content="0000000000" HorizontalAlignment="Right" Margin="0,0,0,8" Width="100" FontWeight="Bold" BorderThickness="1" TextOptions.TextFormattingMode="Display" Padding="0" RenderTransformOrigin="0.574,0.31" Grid.Row="1" VerticalAlignment="Bottom" Height="18" Grid.Column="1" FlowDirection="RightToLeft" Grid.RowSpan="2"/>
+
+        <Menu x:Name="menu" Height="24" VerticalAlignment="Top" Margin="0" Grid.ColumnSpan="3" Focusable="False" KeyboardNavigation.TabNavigation="None" KeyboardNavigation.DirectionalNavigation="None">
+            <Button x:Name="NewGame" BorderBrush="#00000000" Background="#00000000" Content="Новая игра" HorizontalAlignment="Left" Click="NewGame_Click" HorizontalContentAlignment="Center" Padding="1" Margin="0" FontSize="13" Focusable="False" IsTabStop="False" ToolTip="F2"/>
+            <MenuItem FontSize="13" Header="Уровень" HorizontalAlignment="Left">
+                <RadioButton x:Name="Level1" BorderBrush="#00707070" Background="Transparent" Content="Уровень 1" FontSize="13" HorizontalAlignment="Left" Checked="Level1_Checked"/>
+                <RadioButton x:Name="Level2" BorderBrush="#00707070" Background="Transparent" Content="Уровень 2" FontSize="13" HorizontalAlignment="Left" Checked="Level2_Checked"/>
+            </MenuItem>
+            <MenuItem FontSize="13" Header="Настройки" HorizontalAlignment="Left">
+                <CheckBox x:Name="TurnOnSnow" BorderBrush="#00707070" Content="Включить снег" HorizontalAlignment="Left" Checked="TurnOnSnow_Checked" Unchecked="TurnOnSnow_Unchecked"/>
+                <CheckBox x:Name="TurnOnSound" BorderBrush="#00707070" Content="Включить звук" HorizontalAlignment="Left"/>
+            </MenuItem>
+            <Button x:Name="Help" BorderBrush="#00000000" Background="#00000000" Content="Справка" FontSize="13" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Focusable="False" IsTabStop="False" Click="Help_Click" ToolTip="F1"/>
+        </Menu>
+   <!--     <Label x:Name="lbl_monCount" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="5,12,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFF11B1B"/>
+        <Label x:Name="lbl_swordCount" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="51,12,0,0" Grid.Row="4" VerticalAlignment="Top" RenderTransformOrigin="0.421,0.308" Foreground="#FF146A0C"/>
+        <Button x:Name="btn_Auto" Content="Start" Grid.Column="1" HorizontalAlignment="Left" Margin="157,19,0,0" Grid.Row="4" VerticalAlignment="Top" Width="75" Click="btn_Auto_Click"/>
+        <Button x:Name="btn_stop" Content="Stop" Grid.Column="1" HorizontalAlignment="Left" Margin="245,19,0,0" Grid.Row="4" VerticalAlignment="Top" Width="75" Click="btn_stop_Click"/>
+    -->
+    </Grid>
+</Window>
